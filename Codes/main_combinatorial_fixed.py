@@ -34,7 +34,6 @@ for subset_size in [3, 4, 5, 6, 7, 8]:
     if log_wandb:
         wandb.init(
             project="combinatorial_ucb",
-            entity="uwa",
             tags = ["combinatorial_ucb_subset", f"subset{subset_size}"],
             name = f"combinatorial_ucb_subset_{subset_size}",
             reinit = True)

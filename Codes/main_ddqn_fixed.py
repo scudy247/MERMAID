@@ -33,7 +33,6 @@ for subset_size in [3, 4, 5, 6, 7, 8]:
     if log_wandb:
         wandb.init(
             project="combinatorial_ucb",
-            entity="uwa",
             tags = ["ddqn", f"subset{subset_size}"],
             name = f"ddqn_subset_{subset_size}",
             reinit = True)

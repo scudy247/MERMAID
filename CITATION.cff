@@ -1,0 +1,47 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper below."
+title: "MERMAID"
+type: software
+license: MIT
+repository-code: "https://github.com/scudy247/MERMAID"
+authors:
+  - given-names: Fabio
+    family-names: Busacca
+  - given-names: Laura
+    family-names: Galluccio
+  - given-names: Sergio
+    family-names: Palazzo
+  - given-names: Andrea
+    family-names: Panebianco
+  - given-names: Raoul
+    family-names: Raftopoulos
+  - given-names: Dario
+    family-names: Scuderi
+preferred-citation:
+  type: conference-paper
+  title: "MERMAID: a Multi-armEd bandit approach foR optiMal cArrier selection In OFDM-based unDerwater acoustic networks"
+  authors:
+    - given-names: Fabio
+      family-names: Busacca
+    - given-names: Laura
+      family-names: Galluccio
+    - given-names: Sergio
+      family-names: Palazzo
+    - given-names: Andrea
+      family-names: Panebianco
+    - given-names: Raoul
+      family-names: Raftopoulos
+    - given-names: Dario
+      family-names: Scuderi
+  collection-title: "2025 IEEE 36th International Symposium on Personal, Indoor and Mobile Radio Communications (PIMRC)"
+  publisher:
+    name: IEEE
+  conference:
+    name: "IEEE PIMRC 2025"
+    city: Istanbul
+    country: TR
+  year: 2025
+  month: 9
+  start: 1
+  end: 6
+  doi: "10.1109/PIMRC62392.2025.11275246"

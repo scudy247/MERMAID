@@ -8,7 +8,7 @@ This repository contains:
 
 - the simulation code: Python agents and the DESERT/NS-Miracle TCL scenario;
 - the exported results of the training runs;
-- the MATLAB scripts that produce the figures in the paper ([`MERMAID.pdf`](MERMAID.pdf)).
+- the MATLAB scripts that produce the figures in the paper ([`MERMAID.pdf`](MERMAID.pdf)), presented at **IEEE PIMRC 2025** ([DOI: 10.1109/PIMRC62392.2025.11275246](https://doi.org/10.1109/PIMRC62392.2025.11275246)).
 
 ---
 
@@ -98,6 +98,9 @@ The interfering node transmits on every subcarrier **except** indices `2`, `4` a
 ```
 MERMAID/
 ├── MERMAID.pdf                          # Paper
+├── requirements.txt                     # Python dependencies
+├── LICENSE                              # MIT License
+├── CITATION.cff                         # Citation metadata
 ├── Codes/
 │   ├── combinatorial_fixed_subset.py    # CMAB-UCB agent (MERMAID)
 │   ├── ddqn_fixed_subset.py             # DDQN baseline agent
@@ -125,9 +128,9 @@ MERMAID/
 
 - **Linux** (tested on Ubuntu and WSL).
 - **[DESERT Underwater](https://github.com/signetlabdei/DESERT_Underwater)** with NS-2 and NS-Miracle, built with the OFDM modules (`libuwofdmphy`, `libuwofdmaloha`, `libuwinterferenceofdm`). The `ns` executable must be on your `PATH`.
-- **Python 3.8 or later**, with these packages:
+- **Python 3.8 or later**, with the packages in [`requirements.txt`](requirements.txt):
   ```bash
-  pip install numpy torch wandb
+  pip install -r requirements.txt
   ```
 - **MATLAB** (optional), only to regenerate the figures.
 
@@ -139,7 +142,7 @@ All commands below are run from the repository root. Every path is relative.
 
 ### 1. Weights & Biases (optional)
 
-The training scripts log to W&B with `project="combinatorial_ucb"` and `entity="uwa"`. To keep logging, log in and change `entity` to your own account:
+The training scripts log each episode to W&B, in the project `combinatorial_ucb` of the account you are logged in with. To keep logging, log in once:
 
 ```bash
 wandb login
@@ -196,12 +199,26 @@ Both scripts read the `.xlsx` logs from the `Combinatorial_MAB/`, `DDQN/` and `P
 If you use this code, please cite:
 
 ```bibtex
-@article{mermaid,
-  title   = {{MERMAID}: a Multi-armEd bandit approach foR optiMal cArrier selection In {OFDM}-based unDerwater acoustic networks},
-  author  = {Busacca, Fabio and Galluccio, Laura and Palazzo, Sergio and Panebianco, Andrea and Raftopoulos, Raoul and Scuderi, Dario},
-  year    = {2025}
+@inproceedings{mermaid2025,
+  title     = {{MERMAID}: a Multi-armEd bandit approach foR optiMal cArrier selection In {OFDM}-based unDerwater acoustic networks},
+  author    = {Busacca, Fabio and Galluccio, Laura and Palazzo, Sergio and Panebianco, Andrea and Raftopoulos, Raoul and Scuderi, Dario},
+  booktitle = {2025 IEEE 36th International Symposium on Personal, Indoor and Mobile Radio Communications (PIMRC)},
+  address   = {Istanbul, Turkiye},
+  pages     = {1--6},
+  year      = {2025},
+  month     = sep,
+  publisher = {IEEE},
+  doi       = {10.1109/PIMRC62392.2025.11275246}
 }
 ```
+
+GitHub also offers this citation through the **Cite this repository** button, generated from [`CITATION.cff`](CITATION.cff).
+
+---
+
+## License
+
+The code is released under the [MIT License](LICENSE). `Codes/newSimulation.tcl` is adapted from a DESERT Underwater sample and keeps the BSD license of the SIGNET lab (University of Padova) stated in its header. The MATLAB helpers `hatchfill2.m`, `legendflex.m` and `getpos.m` belong to their respective authors.
 
 ---
 

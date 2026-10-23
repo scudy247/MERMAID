@@ -37,8 +37,11 @@
 ##
 ########################################################################################
 # ----------------------------------------------------------------------------------
-# This script depicts a very simple but complete stack in which two nodes send data
-# to a common sink. The second node is used by the first one as a relay to send data to the sink.
+# Adapted for MERMAID: one source node sends data to a sink over an 8-subcarrier
+# OFDM link, while a disturbance node generates interference on subcarriers
+# 0, 1, 3, 5 and 6 (0-based). The eight command-line arguments (0 or 1) enable
+# or disable each subcarrier of the source node. At the end of the run, the
+# packet delivery ratio and the energy consumption are written to rewards.csv.
 # The routes are configured by using UW/STATICROUTING.
 # The application used to generate data is UW/CBR.
 # ----------------------------------------------------------------------------------
