@@ -124,7 +124,7 @@ MERMAID/
 ## Requirements
 
 - **Linux** (tested on Ubuntu and WSL).
-- **[DESERT Underwater](https://github.com/uwsignet/DESERT_Underwater)** with NS-2 and NS-Miracle, built with the OFDM modules (`libuwofdmphy`, `libuwofdmaloha`, `libuwinterferenceofdm`). The `ns` executable must be on your `PATH`.
+- **[DESERT Underwater](https://github.com/signetlabdei/DESERT_Underwater)** with NS-2 and NS-Miracle, built with the OFDM modules (`libuwofdmphy`, `libuwofdmaloha`, `libuwinterferenceofdm`). The `ns` executable must be on your `PATH`.
 - **Python 3.8 or later**, with these packages:
   ```bash
   pip install numpy torch wandb
@@ -215,4 +215,4 @@ University of Catania · University of Palermo · CNIT Catania Research Unit, It
 
 This work was partially supported by the European Union under the Italian National Recovery and Resilience Plan (NRRP) of NextGenerationEU, partnership on "Telecommunications of the Future" (PE0000001 – program "RESTART").
 
-The simulations are built on the [DESERT Underwater](https://github.com/uwsignet/DESERT_Underwater) framework.
+The simulations are built on the [DESERT Underwater](https://github.com/signetlabdei/DESERT_Underwater) framework.
