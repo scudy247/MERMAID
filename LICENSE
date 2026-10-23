@@ -19,15 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
---------------------------------------------------------------------------------
-
-Third-party components
-
-- Codes/newSimulation.tcl is adapted from a DESERT Underwater sample script and
-  remains under the BSD license of the SIGNET lab, University of Padova, stated
-  in its header.
-- Plots/hatchfill2.m (Takeshi Ikuma), Plots/legendflex.m (Kelly Kearney) and
-  Plots/getpos.m (Jerome Briot) are third-party MATLAB File Exchange utilities.
-  They remain the property of their respective authors, as stated in each file,
-  and are not covered by the MIT License above.

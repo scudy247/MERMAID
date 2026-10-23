@@ -10,6 +10,8 @@ This repository contains:
 - the exported results of the training runs;
 - the MATLAB scripts that produce the figures in the paper ([`MERMAID.pdf`](MERMAID.pdf)), presented at **IEEE PIMRC 2025** ([DOI: 10.1109/PIMRC62392.2025.11275246](https://doi.org/10.1109/PIMRC62392.2025.11275246)).
 
+> **Copyright notice for [`MERMAID.pdf`](MERMAID.pdf):** © 2025 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses, in any current or future media, including reprinting/republishing this material for advertising or promotional purposes, creating new collective works, for resale or redistribution to servers or lists, or reuse of any copyrighted component of this work in other works. The final published version is available at [https://doi.org/10.1109/PIMRC62392.2025.11275246](https://doi.org/10.1109/PIMRC62392.2025.11275246).
+
 ---
 
 ## Highlights
@@ -97,7 +99,7 @@ The interfering node transmits on every subcarrier **except** indices `2`, `4` a
 
 ```
 MERMAID/
-├── MERMAID.pdf                          # Paper
+├── MERMAID.pdf                          # Paper (accepted version, © 2025 IEEE)
 ├── requirements.txt                     # Python dependencies
 ├── LICENSE                              # MIT License
 ├── CITATION.cff                         # Citation metadata
