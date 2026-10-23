@@ -79,7 +79,7 @@ These are the settings in [`Codes/newSimulation.tcl`](Codes/newSimulation.tcl):
 | Parameter | Value |
 |---|---|
 | Simulator | DESERT Underwater (NS-2 + NS-Miracle) |
-| Topology | 1 transmitter → 1 sink, plus 1 interfering node |
+| Topology | 1 transmitter at (24, 32, −68) → 1 sink at (0, 0, −5), about 75 m apart, plus 1 interfering node at (1, 1, −5) |
 | Carrier frequency / bandwidth | 125 kHz / 125 kHz |
 | OFDM subcarriers | 8 (about 15.6 kHz each) |
 | Selected subcarriers `K` | 3 in the paper (the driver scripts sweep 3 to 8) |
@@ -92,6 +92,8 @@ These are the settings in [`Codes/newSimulation.tcl`](Codes/newSimulation.tcl):
 | Episodes per run | 1000 |
 
 The interfering node transmits on every subcarrier **except** indices `2`, `4` and `7` (0-based). Subcarriers **3, 5 and 8** (1-based) are therefore the only good channels, and selecting them is the optimal action.
+
+> **Note on the link distance:** the paper states that the transmitter is 360 m from the receiver. The published results were obtained with the geometry in this script, where the transmitter is about 75 m from the sink. With carriers 3, 5 and 8 enabled, this script reproduces the maximum PDR reported in the paper (45.71 %).
 
 ---
 

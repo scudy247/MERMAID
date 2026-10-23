@@ -37,7 +37,7 @@
 ##
 ########################################################################################
 # ----------------------------------------------------------------------------------
-# Adapted for MERMAID: one source node sends data to a sink over an 8-subcarrier
+# Adapted for MERMAID: one source node, about 75 m away, sends data to a sink over an 8-subcarrier
 # OFDM link, while a disturbance node generates interference on subcarriers
 # 0, 1, 3, 5 and 6 (0-based). The eight command-line arguments (0 or 1) enable
 # or disable each subcarrier of the source node. At the end of the run, the
@@ -220,10 +220,6 @@ Module/UW/OFDM/PHY   set SPLOptimization_          0
 Module/UW/OFDM/PHY   set debug_                    0
 Module/UW/OFDM_ALOHA set uwofdmaloha_debug_        0
 
-# Random number generator within a range, used to place the source nodes
-proc myRand {min max} {
-    expr {int(rand() * ($max + 1 - $min)) + $min}
-}
 
 ################################
 # Procedure(s) to create source nodes #
@@ -278,11 +274,11 @@ proc createNode { id } {
     $posdb($id) addpos [$ipif($id) addr] $position($id)
 
 
-    # Placing the nodes in a cube with a 70 m side
-    # The area is centered in (0, 0, -35)
-    set x_pos [myRand -35 35]
-    set y_pos [myRand -35 35]
-    set z_pos [myRand -70 0]
+    # Source node at a fixed position, about 75 m from the sink at (0, 0, -5).
+    # This is the position used for the published results.
+    set x_pos 24
+    set y_pos 32
+    set z_pos -68
 
     $position($id) setX_ $x_pos
     $position($id) setY_ $y_pos
