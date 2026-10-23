@@ -106,7 +106,7 @@ MERMAID/
 │   ├── main_ddqn_fixed.py               # Training loop: DDQN ↔ DESERT
 │   ├── main_ppo_fixed.py                # Training loop: PPO ↔ DESERT
 │   └── newSimulation.tcl                # DESERT OFDM scenario (takes an 8-bit carrier mask)
-└── MATLAB_Graphs/
+└── Plots/
     ├── Plot_Figures.m                   # Plots Figs. 2–4 of the paper
     ├── Subcarrier_Accuracy.m            # Builds Table I (subcarrier-selection accuracy)
     ├── Combinatorial_MAB/               # Exported logs for MERMAID (pdr, reward, energy, action0–2) as .xlsx
@@ -180,7 +180,7 @@ python ddqn_fixed_subset.py
 
 ### 5. Reproduce the figures
 
-In MATLAB, set `MATLAB_Graphs/` as the current folder and run:
+In MATLAB, set `Plots/` as the current folder and run:
 
 ```matlab
 Plot_Figures          % Figs. 2–4
