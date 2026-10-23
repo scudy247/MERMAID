@@ -28,7 +28,7 @@ def run_simulation(carriers):
     except FileNotFoundError:
         print("Error: 'ns' command not found. Make sure NS-2 is installed and in your PATH")
 
-# Loop su diversi subset size
+# Loop over different subset sizes
 for subset_size in [3, 4, 5, 6, 7, 8]:
 
     if log_wandb:

@@ -1,6 +1,6 @@
 import numpy as np
 
-# fixed number of subset arms, maybe to an analysis after the run for different values of subset.
+# Combinatorial UCB with a fixed subset size K (number of arms selected per round).
 class CombinatorialUCB:
     def __init__(self, num_arms, subset_size, delta=0.05):
         self.num_arms = num_arms  # Total number of base arms

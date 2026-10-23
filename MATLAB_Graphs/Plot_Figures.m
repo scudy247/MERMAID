@@ -3,13 +3,13 @@ close all
 
 %% ------- COLLECTING DATA -------
 
-mermaid_data = readmatrix('Combinatorial_MAB\pdr_cmab.xlsx','Range','B2:B1002');
-ddqn_data = readmatrix('DDQN\pdr_ddqn.xlsx','Range','B2:B1002');
-ppo_data = readmatrix('PPO\pdr_ppo.xlsx','Range','B2:B1002');
+mermaid_data = readmatrix('Combinatorial_MAB/pdr_cmab.xlsx','Range','B2:B1002');
+ddqn_data = readmatrix('DDQN/pdr_ddqn.xlsx','Range','B2:B1002');
+ppo_data = readmatrix('PPO/pdr_ppo.xlsx','Range','B2:B1002');
 
-mermaid_energy_data = readmatrix('Combinatorial_MAB\energy_cmab.xlsx','Range','B2:B1002');
-ddqn_energy_data = readmatrix('DDQN\energy_ddqn.xlsx','Range','B2:B1002');
-ppo_energy_data = readmatrix('PPO\energy_ppo.xlsx','Range','B2:B1002');
+mermaid_energy_data = readmatrix('Combinatorial_MAB/energy_cmab.xlsx','Range','B2:B1002');
+ddqn_energy_data = readmatrix('DDQN/energy_ddqn.xlsx','Range','B2:B1002');
+ppo_energy_data = readmatrix('PPO/energy_ppo.xlsx','Range','B2:B1002');
 
 mermaid_pdr = mean(mermaid_data, 'omitnan');
 ddqn_pdr = mean(ddqn_data, 'omitnan');

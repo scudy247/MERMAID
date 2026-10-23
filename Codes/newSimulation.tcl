@@ -106,22 +106,22 @@ $ns use-Miracle
 
 ##################
 # Tcl variables  #
-# selective variables to run the simulation
+# Variables used to configure the simulation
 ##################
 set opt(nn)                 1 ;# Number of Nodes
 set opt(starttime)          1  ;# simulation start time, default time start 1
-set opt(stoptime)           300 ;# stop time in sec previously 100000
+set opt(stoptime)           300 ;# stop time in seconds
 set opt(txduration)         [expr $opt(stoptime) - $opt(starttime)]
 set opt(trace_files)        0 ;# 0 to disable trace files, 1 to enable trace files
 
 set seed 12345
 expr srand($seed)
 
-set opt(maxinterval_)       10.0  ;# max interval between two packets. upperlimit
+set opt(maxinterval_)       10.0  ;# max interval between two packets (upper limit)
 set opt(freq)               125000.0 ;# frequency
 set opt(bw)                 125000.0 ;# bandwidth
 set opt(bitrate)            64000.0 ;# bitrate or transmission rate
-set opt(subCarrier)         8 ;# used to define number of sub carrier. But not used as having trouble setting the value.
+set opt(subCarrier)         8 ;# number of OFDM subcarriers
 set opt(subCarSize)         [expr $opt(bw)/$opt(subCarrier) ] ;# used to define the bandwidth of each subcarrier
 set opt(ack_mode)           "setAckMode"
 set opt(print_mode)         "printTransitions"
@@ -141,8 +141,8 @@ set opt(pktsize)    460
 set opt(cbr_period) [expr 8 * $opt(nn)]
 set opt(seedcbr)	100000
 
-# this block is used for defining some of the simulation variable value by commandline
-# argument. If no argument is found some default value is set. 
+# This block sets some of the simulation variables from command-line
+# arguments. If no argument is given, default values are used.
 if {$opt(bash_parameters)} {
     if {$argc != 8} {
         puts "The script requires eight inputs, which is a sequence of zeros and ones representing the availability of the carriers."
@@ -179,7 +179,7 @@ if {$opt(trace_files)} {
     set opt(cltracefile) [open $opt(cltracefilename) w]
 }
 
-# variables related to channel and setting their values
+# Channel-related variables
 MPropagation/Underwater set practicalSpreading_ 1.8
 MPropagation/Underwater set debug_              0
 MPropagation/Underwater set windspeed_          1
@@ -195,14 +195,14 @@ $data_mask setBandwidth  $opt(bw)
 #########################
 #UW/CBR
 Module/UW/CBR set packetSize_          $opt(pktsize)
-# Max period between pkts for poisson, or fixed period for not poisson 
+# Max period between packets for Poisson traffic, or fixed period otherwise
 Module/UW/CBR set period_              $opt(cbr_period)  
-# If poisson distribution is used
+# Use Poisson-distributed traffic
 Module/UW/CBR set PoissonTraffic_      1
 Module/UW/CBR set seedcbr_             $opt(seedcbr)
 Module/UW/CBR set debug_               0
 
-#UW/OFDM/PHY variables THese variables setup are taken as the DESERT default values. 
+#UW/OFDM/PHY variables: these values are the DESERT defaults.
 Module/UW/OFDM/PHY   set BitRate_                  $opt(bitrate)
 Module/UW/OFDM/PHY   set AcquisitionThreshold_dB_  15.0 
 Module/UW/OFDM/PHY   set RxSnrPenalty_dB_          0
@@ -217,14 +217,14 @@ Module/UW/OFDM/PHY   set SPLOptimization_          0
 Module/UW/OFDM/PHY   set debug_                    0
 Module/UW/OFDM_ALOHA set uwofdmaloha_debug_        0
 
-# random number generator with a range. used for placing the source nodes
+# Random number generator within a range, used to place the source nodes
 proc myRand {min max} {
     expr {int(rand() * ($max + 1 - $min)) + $min}
 }
 
 ################################
 # Procedure(s) to create source nodes #
-# All nodes share same OFDM phy layer implementation #
+# All nodes share the same OFDM PHY implementation #
 ################################
 proc createNode { id } {
 
@@ -275,8 +275,8 @@ proc createNode { id } {
     $posdb($id) addpos [$ipif($id) addr] $position($id)
 
 
-    # placing the  nodes in cube of 70 meter side
-    # The area in centered in 0 0 -35 
+    # Placing the nodes in a cube with a 70 m side
+    # The area is centered in (0, 0, -35)
     set x_pos [myRand -35 35]
     set y_pos [myRand -35 35]
     set z_pos [myRand -70 0]
@@ -287,13 +287,13 @@ proc createNode { id } {
 
     puts "Node Placed at $x_pos $y_pos $z_pos"
     
-    #Setting up Interference Model: in particular number of subcarrier used in a node
+    #Setting up the interference model, in particular the number of subcarriers used by a node
     set interf_data($id) [new "Module/UW/INTERFERENCEOFDM"]
     $interf_data($id) set maxinterval_ $opt(maxinterval_)
     $interf_data($id) set debug_       0
     $interf_data($id) setInterfCarriers $opt(subCarrier)
 
-    # SEtting up phy layer variable from script. 
+    # Setting up PHY layer variables from the script. 
     $phy($id) setPropagation $propagation
     $phy($id) init_ofdm_node $opt(nn) $opt(freq) $opt(subCarrier) $id 
     
@@ -374,13 +374,13 @@ proc createOFDMDisturbanceNode { id } {
 
     puts "Node Placed at 1 1 -5"
 
-    #Setting up Interference Model: in particular number of subcarrier used in a node
+    #Setting up the interference model, in particular the number of subcarriers used by a node
     set interf_data($id) [new "Module/UW/INTERFERENCEOFDM"]
     $interf_data($id) set maxinterval_ $opt(maxinterval_)
     $interf_data($id) set inodeID_ $id
     $interf_data($id) set debug_       0
 
-    # SEtting up phy layer variable from script.
+    # Setting up PHY layer variables from the script.
     $phy($id) setPropagation $propagation
 
     $phy($id) setSpectralMask $data_mask
@@ -505,7 +505,7 @@ createSink
 if {$opt(interfNodeEnabled)} {
     puts "CREATING NOISE NODE"
     Module/UW/OFDM/PHY  set MaxTxSPL_dB_   [expr $opt(txpower) * 0.6875]
-    Module/UW/OFDM/PHY  set powerScaling_  1; #to avoid scale power with carriers
+    Module/UW/OFDM/PHY  set powerScaling_  1; # to avoid scaling the power with the number of carriers
     Module/UW/CBR set packetSize_          $opt(dpktsize)
     Module/UW/CBR set period_              $opt(dpktcbr)
     Module/UW/CBR set PoissonTraffic_      0
@@ -524,7 +524,7 @@ proc connectNodes {id1} {
     $cbr_sink($id1) set destPort_ $portnum($id1)
 }
 
-# Setup flows connecting each source nodes to the sink
+# Set up the flows connecting each source node to the sink
 for {set id1 0} {$id1 < $opt(nn)} {incr id1}  {
     connectNodes $id1
 }
@@ -543,12 +543,12 @@ for {set id1 0} {$id1 < $opt(nn)} {incr id1}  {
     $mll_sink addentry [$ipif($id1) addr] [ $mac($id1) addr]
 }
 
-#disturbance node learns about itself
+# The disturbance node learns about itself
 if {$opt(interfNodeEnabled)} {
     $mll(66) addentry 200 200
 }
 
-# routing table for each nodes. For onehop this is the flow between a source and sink node. 
+# Routing table for each node. For one hop, this is the flow between a source and the sink node.
 for {set id1 0} {$id1 < $opt(nn)} {incr id1}  {
     $ipr($id1) addRoute [$ipif_sink addr] [$ipif_sink addr]
 }
@@ -633,7 +633,7 @@ proc finish {} {
     set pdr [expr $sum_cbr_rcv_pkts / $sum_cbr_sent_pkts * 100]
     set energy_consumption [expr ($sum_tx_power_consumed / $opt(nn))]
 
-    set writer [open "~/Desktop/Borsa_di_studio/rewards.csv" w+]
+    set writer [open "rewards.csv" w+]
     puts $writer "$pdr, $energy_consumption"
     close $writer
 

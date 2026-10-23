@@ -56,7 +56,7 @@ for subset_size in [3, 4, 5, 6, 7, 8]:
 
         if log_wandb:
             for i, action in enumerate(actions):
-                wandb.log({f"action{i}": action + 1}, commit=False)  # +1 per allinearsi alla numerazione precedente
+                wandb.log({f"action{i}": action + 1}, commit=False)  # +1 to use 1-based carrier indices
             wandb.log({"pdr": pdr, "reward": pdr, "energy": energy}, commit=True)
 
         received_rewards = [pdr for _ in range(len(actions))]

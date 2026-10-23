@@ -50,7 +50,7 @@ for subset_size in [3, 4, 5, 6, 7, 8]:
         action_index = agent.select_action(state)
         actions = agent.get_action_arms(action_index)
 
-        # Initialize an array of 8 carriers, always select index 0
+        # Build the 8-carrier on/off mask from the selected arms
         carriers = np.zeros(8, dtype=int)
         carriers[np.array(actions)] = 1
 
@@ -64,11 +64,11 @@ for subset_size in [3, 4, 5, 6, 7, 8]:
 
             if log_wandb:
                 for i, arm in enumerate(actions):
-                    wandb.log({f"action{i}": arm + 1}, commit=False)  # +1 per uniformità con MAB
+                    wandb.log({f"action{i}": arm + 1}, commit=False)  # +1 to use 1-based carrier indices, as in the MAB logs
                 wandb.log({"pdr": pdr, "reward": pdr, "energy": energy}, commit=True)
 
 
-            # Each arm gets the same reward (or you could load arm-specific if available)
+            # Each selected arm receives the same reward (the episode PDR)
             received_rewards = [pdr for _ in actions]
             reward = sum(received_rewards)
 
